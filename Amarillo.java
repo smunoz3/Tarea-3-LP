@@ -1,5 +1,5 @@
-public class Amarillo {
-    public static void main(String[] args) {
-        System.out.println("Hola, mundo!");
+public class Amarillo extends Pikinim{
+    public Amarillo(){
+    super(1, 3, 10);
     }
 }
