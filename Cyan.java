@@ -1,5 +1,10 @@
 public class Cyan extends Pikinim{
-    public Cyan(){
-    super(1, 1, 10);
+    public Cyan(int cantidad){
+    super(1, 1, cantidad);
+    }
+
+    @Override
+    public void multiplicar(int cantidad){
+        setCantidad(getCantidad()+cantidad*3);
     }
 }

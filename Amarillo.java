@@ -1,5 +1,10 @@
 public class Amarillo extends Pikinim{
-    public Amarillo(){
-    super(1, 3, 10);
+    public Amarillo(int cantidad){
+    super(1, 3, cantidad);
+    }
+
+    @Override
+    public void multiplicar(int cantidad){
+        setCantidad(getCantidad()+cantidad*getAtaque());
     }
 }
