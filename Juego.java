@@ -33,7 +33,7 @@ public class Juego{
         arregloDeZonas[10] = new Muralla(false,150);
 
         Juego Game = new Juego();
-        Game.setPosicion(8);
+        Game.setPosicion(3);
 
         Cyan P_Cyan = new Cyan(10);
         Amarillo P_Amarillo = new Amarillo(10);
