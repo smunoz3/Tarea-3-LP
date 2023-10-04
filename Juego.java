@@ -46,7 +46,7 @@ public class Juego{
         String movAnterior = "nada";
         
 
-        while(turno<=30){
+        while((turno<=30)||(cantidadPiezas>=3)){
             System.out.println("Turno "+ turno + " (Cyan - "+P_Cyan.getCantidad()+", Amarillo - "+P_Amarillo.getCantidad()+", Magenta - "+P_Magenta.getCantidad()+")");
             Class<?> clase = arregloDeZonas[Game.getPoicion()].getClass();
             System.out.println("Zona actal: "+clase.getName());
@@ -58,7 +58,17 @@ public class Juego{
             Class<?> claseD = arregloDeZonas[derecha].getClass();
             Class<?> claseI = arregloDeZonas[izquierda].getClass();
             Class<?> claseActual = arregloDeZonas[Game.getPoicion()].getClass();
-            System.out.print("1. Ir a derecha ("+claseD.getName()+") 2. Ir a la izquierda ("+claseI.getName()+") 3. Quedarse aquí \n");
+
+            if (claseActual.getName() != "Muralla"){
+                System.out.print("1. Ir a derecha ("+claseD.getName()+") 2. Ir a la izquierda ("+claseI.getName()+") 3. Quedarse aquí \n");
+            }
+            else if((claseActual.getName() == "Muralla") &&(movAnterior == "izquierda")){
+                System.out.print("1. Ir a derecha ("+claseD.getName()+") 2. No puedes ir hacia la izquierda 3. Quedarse aquí \n");
+            }
+            else if((claseActual.getName() == "Muralla") &&(movAnterior == "derecha")){
+                System.out.print("1. No puedes ir a la derecha 2. Ir a la izquierda ("+claseI.getName()+") 3. Quedarse aquí \n");
+            }
+
             int movimiento = scanner.nextInt();
            
             if (movimiento == 1){
@@ -68,8 +78,14 @@ public class Juego{
                 else{
                     Game.moverse(derecha);
                     movAnterior = "derecha";
-                    turno = turno +1;
                     System.out.println("Te moviste hacia la derecha\n");
+
+                    arregloDeZonas[Game.getPoicion()].interactuar(P_Cyan, P_Magenta, P_Amarillo);
+                    if ((claseActual.getName()== "Pieza")&&(arregloDeZonas[Game.getPoicion()].completada)){
+                        cantidadPiezas = cantidadPiezas +1;
+                        System.out.println("Te cogiste una pieza\n");
+                    }
+                    turno = turno +1;
                 }
             }
             else if (movimiento == 2){
@@ -79,8 +95,14 @@ public class Juego{
                 else{ 
                     Game.moverse(izquierda);
                     movAnterior = "izquierda";
-                    turno = turno +1;
                     System.out.println("Te moviste hacia la izquierda\n");
+
+                    arregloDeZonas[Game.getPoicion()].interactuar(P_Cyan, P_Magenta, P_Amarillo);
+                    if ((claseActual.getName()== "Pieza")&&(arregloDeZonas[Game.getPoicion()].completada)){
+                        cantidadPiezas = cantidadPiezas +1;
+                        System.out.println("Te cogiste una pieza\n");
+                    }
+                    turno = turno +1;
                 }
             }
             else if (movimiento == 3){
