@@ -21,11 +21,11 @@ public class Muralla extends Zona{
             setCompletada(true);
         }
         if (getCompletada()){
-            System.out.println("Rompiste la muralla");
+            System.out.println("Rompiste la muralla\n");
         }
         else{
-            System.out.println("A la muralla le hiciste: "+(vidaActual - getVida()));
-            System.out.println("A la muralla le queda: "+getVida());
+            System.out.println("A la muralla le hiciste: "+(vidaActual - getVida())+" de daño");
+            System.out.println("A la muralla le queda: "+getVida()+" de vida\n");
         }
     }
 

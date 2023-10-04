@@ -1,4 +1,4 @@
-public class Pikinim {
+abstract public class Pikinim {
     private int ataque;
     private int capacidad;
     private int cantidad;
@@ -17,10 +17,10 @@ public class Pikinim {
         this.ataque = ataque;
     }
     public void setCapacidad(int capacidad) {
-        this.ataque = capacidad;
+        this.capacidad = capacidad;
     }
     public void setCantidad(int cantidad) {
-        this.ataque = cantidad;
+        this.cantidad = cantidad;
     }
 
     public Pikinim(int atk, int cap, int cant) {
@@ -34,7 +34,5 @@ public class Pikinim {
         setCantidad(cant-cantidad);
     }
 
-    public void multiplicar(int cantidad){
-        // * se multiplica
-    }
+    public abstract void multiplicar(int cantidad);
 }

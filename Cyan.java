@@ -4,7 +4,7 @@ public class Cyan extends Pikinim{
     }
 
     @Override
-    public void multiplicar(int cantidad){
+    public void multiplicar(int cantidad) {
         setCantidad(getCantidad()+cantidad*3);
     }
 }

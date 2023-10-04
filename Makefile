@@ -1,5 +1,5 @@
 all: JuegoPikmin.class
-# -d out/ -cp . 
+ 
 JuegoPikmin.class: Pikinim.java Cyan.java Magenta.java Amarillo.java Zona.java Pieza.java Enemigo.java Pildora.java Muralla.java Juego.java ILevantar.java
 	javac Pikinim.java Cyan.java Magenta.java Amarillo.java Zona.java Pieza.java Enemigo.java Pildora.java Muralla.java Juego.java ILevantar.java
 
