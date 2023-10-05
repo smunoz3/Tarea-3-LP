@@ -5,6 +5,17 @@ public class Magenta extends Pikinim{
 
     @Override
     public void multiplicar(int cantidad){
+        /*
+        Entradas:
+        cantidad Tipo int
+
+        Funcionamiento:
+        Llama a setCantidad aumentado la cantidad de pikinim
+        segun cantidad*1.5 redondeado hacia arriba
+
+        Salida:
+        Nada
+        */
         setCantidad(getCantidad()+(int)Math.ceil(cantidad*1.5));
     }
 }

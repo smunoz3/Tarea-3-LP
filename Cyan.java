@@ -5,6 +5,17 @@ public class Cyan extends Pikinim{
 
     @Override
     public void multiplicar(int cantidad) {
+        /*
+        Entradas:
+        cantidad Tipo int
+
+        Funcionamiento:
+        Llama a setCantidad aumentado la cantidad de pikinim
+        segun cantidad*3 
+
+        Salida:
+        Nada
+        */
         setCantidad(getCantidad()+cantidad*3);
     }
 }

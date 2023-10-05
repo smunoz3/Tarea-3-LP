@@ -5,20 +5,50 @@ public class Juego{
     public static Zona[] arregloDeZonas;
 
     public int getPoicion(){
+        /*
+        Entradas:
+        Nada
+
+        Funcionamiento:
+        Retorna la variable posicion
+        
+        Salida:
+        posicion Tipo int
+        */
         return posicion;
     }
 
     public void setPosicion(int posicion){
+        /*
+        Entradas:
+        posicion Tipo int
+
+        Funcionamiento:
+        Asigna el parametro posicion a posicion de la clase
+
+        Salida:
+        Nada
+        */
         this.posicion = posicion;
     }
 
-    public void moverse(int p){ //comprobacion movimiento valido al ser llamado
+    public void moverse(int p){ 
+        /*
+        Entradas:
+        p Tipo int
+
+        Funcionamiento:
+        Asigna la posicion en p
+
+        Salida:
+        Nada
+        */
        setPosicion(p);
     }
     
     public static void main(String[] args) {
         int n = 11;
-        Zona[] arregloDeZonas = new Zona[n]; // Crea un arreglo de objetos Zona
+        Zona[] arregloDeZonas = new Zona[n];
         Scanner scanner = new Scanner(System.in);
 
         arregloDeZonas[0] = new Pieza(false,50);
@@ -136,6 +166,9 @@ public class Juego{
                 turno = turno +1;
             }
             else if (movimiento ==99){
+                break;
+            }
+            if ((P_Cyan.getCantidad()==0)&&(P_Magenta.getCantidad()==0)&&(P_Amarillo.getCantidad()==0)){
                 break;
             }
         }
