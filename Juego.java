@@ -42,13 +42,15 @@ public class Juego{
 
         int turno = 1;
         int cantidadPiezas =0;
+        boolean bandera = false;
         int derecha,izquierda;
+        String situacion1,situacion2;
         String movAnterior = "nada";
         
 
         while((turno<=30)&&(cantidadPiezas<3)){
             System.out.println("==========================================");
-            System.out.println("Turno "+ turno + " (Cyan - "+P_Cyan.getCantidad()+", Amarillo - "+P_Amarillo.getCantidad()+", Magenta - "+P_Magenta.getCantidad()+") Cantidad de piezas: "+cantidadPiezas+"/3");
+            System.out.println("Turno "+ turno + " (Cyan - "+P_Cyan.getCantidad()+", Magenta - "+P_Magenta.getCantidad()+", Amarillo - "+P_Amarillo.getCantidad()+") Cantidad de piezas: "+cantidadPiezas+"/3");
             Class<?> clase = arregloDeZonas[Game.getPoicion()].getClass();
             System.out.println("Zona actal: "+clase.getName());
             System.out.println("Opciones: ");
@@ -61,13 +63,17 @@ public class Juego{
             Class<?> claseActual = arregloDeZonas[Game.getPoicion()].getClass();
 
             if((claseActual.getName() == "Muralla") &&(movAnterior == "izquierda")&&(!arregloDeZonas[Game.getPoicion()].getCompletada())){
-                System.out.print("1. Ir a derecha ("+claseD.getName()+") 2. No puedes ir hacia la izquierda 3. Quedarse aquí \n");
+                situacion1 = (arregloDeZonas[derecha].getCompletada())? "Completada":"No completada";
+                System.out.print("1. Ir a derecha "+claseD.getName()+" ("+situacion1+") 2. No puedes ir hacia la izquierda 3. Quedarse aquí \n");
             }
             else if((claseActual.getName() == "Muralla") &&(movAnterior == "derecha")&&(!arregloDeZonas[Game.getPoicion()].getCompletada())){
-                System.out.print("1. No puedes ir a la derecha 2. Ir a la izquierda ("+claseI.getName()+") 3. Quedarse aquí \n");
+                situacion2 = (arregloDeZonas[izquierda].getCompletada())? "Completada":"No completada";
+                System.out.print("1. No puedes ir a la derecha 2. Ir a la izquierda "+claseI.getName()+" ("+situacion2+") 3. Quedarse aquí \n");
             }
             else{
-                System.out.print("1. Ir a derecha ("+claseD.getName()+") 2. Ir a la izquierda ("+claseI.getName()+") 3. Quedarse aquí \n");
+                situacion1 = (arregloDeZonas[derecha].getCompletada())? "Completada":"No completada";
+                situacion2 = (arregloDeZonas[izquierda].getCompletada())? "Completada":"No completada";
+                System.out.print("1. Ir a derecha "+claseD.getName()+" ("+situacion1+") 2. Ir a la izquierda "+claseI.getName()+" ("+situacion2+") 3. Quedarse aquí \n");
             }
 
             int movimiento = scanner.nextInt();
@@ -83,11 +89,16 @@ public class Juego{
                     System.out.println("Te moviste hacia la derecha");
                     System.out.println("==========================================\n");
 
-                    arregloDeZonas[Game.getPoicion()].interactuar(P_Cyan, P_Magenta, P_Amarillo);
-                    if ((claseActual.getName()== "Pieza")&&(arregloDeZonas[Game.getPoicion()].completada)){
-                        cantidadPiezas = cantidadPiezas +1;
-                        System.out.println("CantidadPiezas +1");
-                        System.out.println("==========================================");
+                    if (claseD.getName()== "Pieza"){
+                        bandera = arregloDeZonas[Game.getPoicion()].completada;
+                        arregloDeZonas[Game.getPoicion()].interactuar(P_Cyan, P_Magenta, P_Amarillo);
+                        if ((arregloDeZonas[Game.getPoicion()].completada) && (!bandera)){
+                            cantidadPiezas = cantidadPiezas +1;
+                            System.out.println("Recogiste 1 pieza\n");
+                        }
+                    } 
+                    else{
+                        arregloDeZonas[Game.getPoicion()].interactuar(P_Cyan, P_Magenta, P_Amarillo);
                     }
                     turno = turno +1;
                 }
@@ -103,11 +114,17 @@ public class Juego{
                     System.out.println("Te moviste hacia la izquierda");
                     System.out.println("==========================================\n");
 
-                    arregloDeZonas[Game.getPoicion()].interactuar(P_Cyan, P_Magenta, P_Amarillo);
-                    if ((claseActual.getName()== "Pieza")&&(arregloDeZonas[Game.getPoicion()].completada)){
-                        cantidadPiezas = cantidadPiezas +1;
-                        System.out.println("CantidadPiezas +1");
-                        System.out.println("==========================================");
+
+                    if (claseI.getName()== "Pieza"){
+                        bandera = arregloDeZonas[Game.getPoicion()].completada;
+                        arregloDeZonas[Game.getPoicion()].interactuar(P_Cyan, P_Magenta, P_Amarillo);
+                        if ((arregloDeZonas[Game.getPoicion()].completada) && (!bandera)){
+                            cantidadPiezas = cantidadPiezas +1;
+                            System.out.println("Recogiste 1 pieza\n");
+                        }
+                    } 
+                    else{
+                        arregloDeZonas[Game.getPoicion()].interactuar(P_Cyan, P_Magenta, P_Amarillo);
                     }
                     turno = turno +1;
                 }
@@ -116,11 +133,6 @@ public class Juego{
                 System.out.println("Te quedaste en el sitio");
                 System.out.println("==========================================\n");
                 arregloDeZonas[Game.getPoicion()].interactuar(P_Cyan, P_Magenta, P_Amarillo);
-                if ((claseActual.getName()== "Pieza")&&(arregloDeZonas[Game.getPoicion()].completada)){
-                    cantidadPiezas = cantidadPiezas +1;
-                    System.out.println("CantidadPiezas +1");
-                    System.out.println("==========================================");
-                }
                 turno = turno +1;
             }
             else if (movimiento ==99){

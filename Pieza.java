@@ -20,7 +20,7 @@ public class Pieza extends Zona implements ILevantar{
             Levantar(cyan, Magenta, Amarillo);
         }
         else{
-            System.out.println("No hay nada que podamos hacer");
+            System.out.println("No hay nada que podamos hacer\n");
         }
     }
     @Override

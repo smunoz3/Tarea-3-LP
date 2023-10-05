@@ -30,7 +30,7 @@ public class Muralla extends Zona{
             }
         }
         else{
-            System.out.println("No queda nada que hacer aqui");
+            System.out.println("No queda nada que hacer aqui\n");
         }
     }
 

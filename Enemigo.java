@@ -43,7 +43,7 @@ public class Enemigo extends Zona implements ILevantar{
             }
         }
         else{
-            System.out.println("No queda nada que hacer aqui");
+            System.out.println("No queda nada que hacer aqui\n");
         }
     }
 
@@ -94,7 +94,7 @@ public class Enemigo extends Zona implements ILevantar{
         }
         else{
             System.out.println("El enemigo sigue con vida");
-            System.out.println("Le queda:"+getVida()+"\n");
+            System.out.println("Le queda: "+getVida()+" de vida\n");
             return false;
         }
         

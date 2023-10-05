@@ -37,7 +37,7 @@ public class Pildora extends Zona{
             setCompletada(true);
         }
         else{
-            System.out.println("No queda nada que hacer aqui");
+            System.out.println("No queda nada que hacer aqui\n");
         }
     }
 }
