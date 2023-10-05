@@ -8,12 +8,12 @@ public class Zona{
     public void setCompletada(boolean completada) {
         this.completada = completada;
     }
-    //Constructor
+
     public Zona(boolean completada){
         this.completada = completada;
     }
     
-    public void interactuar(Pikinim cyan,Pikinim Magenta, Pikinim Amarillo){//3 pikmin
+    public void interactuar(Pikinim cyan,Pikinim Magenta, Pikinim Amarillo){
         if (getCompletada()){
             System.out.println("No queda nada que hacer aqu");
         }

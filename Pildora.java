@@ -20,7 +20,7 @@ public class Pildora extends Zona{
 
     @Override
     public void interactuar(Pikinim cyan,Pikinim magenta, Pikinim amarillo){
-        if (getCompletada() == false){
+        if (!getCompletada()){
             System.out.print("Qué color de pikinim desea que se multiplique? (cantidad a multiplicar: "+getCantidad()+")\n");
             System.out.print("1.Cyan  2.Magenta  3.Amarillo\n");
             int color = scanner.nextInt();

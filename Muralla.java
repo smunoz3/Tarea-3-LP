@@ -16,16 +16,21 @@ public class Muralla extends Zona{
 
     @Override
     public void interactuar(Pikinim cyan,Pikinim magenta, Pikinim amarillo){
-        int vidaActual = getVida();
-        if (TryRomper(cyan, magenta, amarillo)){
-            setCompletada(true);
-        }
-        if (getCompletada()){
-            System.out.println("Rompiste la muralla\n");
+        if (!getCompletada()){
+            int vidaActual = getVida();
+            if (TryRomper(cyan, magenta, amarillo)){
+                setCompletada(true);
+            }
+            if (getCompletada()){
+                System.out.println("Rompiste la muralla\n");
+            }
+            else{
+                System.out.println("A la muralla le hiciste: "+(vidaActual - getVida())+" de daño");
+                System.out.println("A la muralla le queda: "+getVida()+" de vida\n");
+            }
         }
         else{
-            System.out.println("A la muralla le hiciste: "+(vidaActual - getVida())+" de daño");
-            System.out.println("A la muralla le queda: "+getVida()+" de vida\n");
+            System.out.println("No queda nada que hacer aqui");
         }
     }
 

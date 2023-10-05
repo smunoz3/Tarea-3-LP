@@ -16,7 +16,12 @@ public class Pieza extends Zona implements ILevantar{
 
     @Override
     public void interactuar(Pikinim cyan,Pikinim Magenta, Pikinim Amarillo){
-        Levantar(cyan, Magenta, Amarillo);
+        if(!getCompletada()){
+            Levantar(cyan, Magenta, Amarillo);
+        }
+        else{
+            System.out.println("No hay nada que podamos hacer");
+        }
     }
     @Override
     public void Levantar(Pikinim cyan,Pikinim magenta,Pikinim amarillo){
@@ -24,8 +29,9 @@ public class Pieza extends Zona implements ILevantar{
         int sumAmarillo = amarillo.getCantidad()*amarillo.getCapacidad();
         int sumMagenta = magenta.getCantidad()*magenta.getCapacidad();
         if (getPeso()<=(sumCyan+sumAmarillo+sumMagenta)){
-            setCompletada(true); // se levanta
+            setCompletada(true);
             System.out.println("Levantaste la pieza\n");
+            //cantidadPiezas = cantidadPiezas +1;
         }
         else{
             System.out.println("No pudiste levantar la pieza\n");

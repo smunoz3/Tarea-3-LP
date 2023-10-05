@@ -1,7 +1,10 @@
+import java.util.Scanner;
+
 public class Enemigo extends Zona implements ILevantar{
     private int vida;
     private int peso;
     private int ataque;
+    private Scanner scanner;
 
     public int getVida(){
         return vida;
@@ -23,17 +26,24 @@ public class Enemigo extends Zona implements ILevantar{
         this.ataque = ataque;
     }
 
-    public Enemigo(boolean completada,int vida,int peso,int atk){
+    public Enemigo(boolean completada,int vida,int peso,int atk, Scanner scanner){
         super(completada);
         this.vida = vida;
         this.peso = peso;
         this.ataque = atk;
+        this.scanner = scanner;
     }
     
     @Override
     public void interactuar(Pikinim cyan,Pikinim magenta, Pikinim amarillo){
-        if (getVida()!=0){
-            Pelear(cyan, magenta, amarillo);
+        if(!getCompletada()){
+            System.out.println("Peleas contra un enemigo");
+            if (getVida()!=0){
+                Pelear(cyan, magenta, amarillo);
+            }
+        }
+        else{
+            System.out.println("No queda nada que hacer aqui");
         }
     }
 
@@ -46,23 +56,45 @@ public class Enemigo extends Zona implements ILevantar{
         double random = Math.random();
         int piknimAfectado = (int) (random * 3) + 1;
 
+        System.out.println("Le hiciste: "+(cyanAtaque+magentaAtaque+amarilloAtaque)+" de daño");
+
         if (piknimAfectado == 1){
-            cyan.setCantidad(cyan.getCantidad()-getAtaque());
+            System.out.println("Pikinims caidos en combate: "+getAtaque()+" cyan");
+            if(cyan.getCantidad()-getAtaque() <0){
+                cyan.setCantidad(0);
+            }
+            else{
+                cyan.setCantidad(cyan.getCantidad()-getAtaque());
+            }
         }
         else if (piknimAfectado == 2){
-            magenta.setCantidad(magenta.getCantidad()-getAtaque());
+            System.out.println("Pikinims caidos en combate: "+getAtaque()+" magenta");
+            if(magenta.getCantidad()-getAtaque() <0){
+                magenta.setCantidad(0);
+            }
+            else{
+                magenta.setCantidad(magenta.getCantidad()-getAtaque());
+            }
         }
         else if (piknimAfectado == 3){
-            amarillo.setCantidad(amarillo.getCantidad()-getAtaque());
+            System.out.println("Pikinims caidos en combate: "+getAtaque()+" amarillo");
+            if(amarillo.getCantidad()-getAtaque() <0){
+                amarillo.setCantidad(0);
+            }
+            else{
+                amarillo.setCantidad(amarillo.getCantidad()-getAtaque());
+            }
         }
 
         if (getVida()<=0){
+            System.out.println("Derrotaste al enemigo\n");
             setVida(0);
-            setCompletada(true);
             Levantar(cyan, magenta, amarillo);
             return true;
         }
         else{
+            System.out.println("El enemigo sigue con vida");
+            System.out.println("Le queda:"+getVida()+"\n");
             return false;
         }
         
@@ -75,7 +107,21 @@ public class Enemigo extends Zona implements ILevantar{
         int amarilloFuerza = amarillo.getCantidad() * amarillo.getCapacidad();
 
         if (getPeso()<=(cyanFuerza+magentaFuerza+amarilloFuerza)){
-            // preguntar que pikmin multiplicar
+            System.out.print("Qué color de pikinim desea que se multiplique? (cantidad a multiplicar: "+getPeso()+")\n");
+            System.out.print("1.Cyan  2.Magenta  3.Amarillo\n");
+            int color = scanner.nextInt();
+
+            if (color ==1){
+                cyan.multiplicar(getPeso());
+            }
+            else if (color ==2){
+                magenta.multiplicar(getPeso());
+            }
+            else if (color ==3){
+                amarillo.multiplicar(getPeso());
+            }
         }
+        //System.out.println("==========================================");
+        setCompletada(true);
     }
 }
