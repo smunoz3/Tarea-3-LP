@@ -153,39 +153,49 @@ public class Enemigo extends Zona implements ILevantar{
         int amarilloAtaque = amarillo.getCantidad() * amarillo.getAtaque();
         setVida((getVida()-cyanAtaque-magentaAtaque-amarilloAtaque));
 
-        double random = Math.random();
-        int piknimAfectado = (int) (random * 3) + 1;
-
         System.out.println("Le hiciste: "+(cyanAtaque+magentaAtaque+amarilloAtaque)+" de daño");
 
-        if (piknimAfectado == 1){
-            System.out.println("Pikinims caidos en combate: "+getAtaque()+" cyan");
-            if(cyan.getCantidad()-getAtaque() <0){
-                cyan.setCantidad(0);
-            }
-            else{
-                cyan.setCantidad(cyan.getCantidad()-getAtaque());
-            }
-        }
-        else if (piknimAfectado == 2){
-            System.out.println("Pikinims caidos en combate: "+getAtaque()+" magenta");
-            if(magenta.getCantidad()-getAtaque() <0){
-                magenta.setCantidad(0);
-            }
-            else{
-                magenta.setCantidad(magenta.getCantidad()-getAtaque());
-            }
-        }
-        else if (piknimAfectado == 3){
-            System.out.println("Pikinims caidos en combate: "+getAtaque()+" amarillo");
-            if(amarillo.getCantidad()-getAtaque() <0){
-                amarillo.setCantidad(0);
-            }
-            else{
-                amarillo.setCantidad(amarillo.getCantidad()-getAtaque());
-            }
-        }
+        double random = Math.random();
 
+        while(true){
+            int piknimAfectado = (int) (random * 3) + 1;
+            if ((piknimAfectado == 1)&&((cyan.getCantidad()-getAtaque())<=0)){
+                System.out.println("Pikinims caidos en combate: "+getAtaque()+" cyan");
+                if(cyan.getCantidad()-getAtaque() <0){
+                    cyan.setCantidad(0);
+                    break;
+                }
+                else{
+                    cyan.setCantidad(cyan.getCantidad()-getAtaque());
+                    break;
+                }
+            }
+            else if ((piknimAfectado == 2)&&((magenta.getCantidad()-getAtaque())<=0)){
+                System.out.println("Pikinims caidos en combate: "+getAtaque()+" magenta");
+                if(magenta.getCantidad()-getAtaque() <0){
+                    magenta.setCantidad(0);
+                    break;
+                }
+                else{
+                    magenta.setCantidad(magenta.getCantidad()-getAtaque());
+                    break;
+                }
+            }
+            else if ((piknimAfectado == 3)&&((amarillo.getCantidad()-getAtaque())<=0)){
+                System.out.println("Pikinims caidos en combate: "+getAtaque()+" amarillo");
+                if(amarillo.getCantidad()-getAtaque() <0){
+                    amarillo.setCantidad(0);
+                    break;
+                }
+                else{
+                    amarillo.setCantidad(amarillo.getCantidad()-getAtaque());
+                    break;
+                }
+            }
+            else if (((cyan.getCantidad()-getAtaque())<=0)&&((magenta.getCantidad()-getAtaque())<=0)&&((amarillo.getCantidad()-getAtaque())<=0)){
+                break;
+            }
+        }
         if (getVida()<=0){
             System.out.println("Derrotaste al enemigo\n");
             setVida(0);
