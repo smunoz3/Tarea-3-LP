@@ -151,16 +151,17 @@ public class Enemigo extends Zona implements ILevantar{
         int cyanAtaque = cyan.getCantidad() * cyan.getAtaque();
         int magentaAtaque = magenta.getCantidad() * magenta.getAtaque();
         int amarilloAtaque = amarillo.getCantidad() * amarillo.getAtaque();
+        int pikinimCaidos;
         setVida((getVida()-cyanAtaque-magentaAtaque-amarilloAtaque));
 
         System.out.println("Le hiciste: "+(cyanAtaque+magentaAtaque+amarilloAtaque)+" de daño");
 
-        double random = Math.random();
-
         while(true){
+            double random = Math.random();
             int piknimAfectado = (int) (random * 3) + 1;
-            if ((piknimAfectado == 1)&&((cyan.getCantidad()-getAtaque())<=0)){
-                System.out.println("Pikinims caidos en combate: "+getAtaque()+" cyan");
+            if ((piknimAfectado == 1)&&(cyan.getCantidad()!=0)){
+                pikinimCaidos = (cyan.getCantidad()>getAtaque())? getAtaque():cyan.getCantidad();
+                System.out.println("Pikinims caidos en combate: "+pikinimCaidos+" cyan");
                 if(cyan.getCantidad()-getAtaque() <0){
                     cyan.setCantidad(0);
                     break;
@@ -170,7 +171,7 @@ public class Enemigo extends Zona implements ILevantar{
                     break;
                 }
             }
-            else if ((piknimAfectado == 2)&&((magenta.getCantidad()-getAtaque())<=0)){
+            else if ((piknimAfectado == 2)&&(magenta.getCantidad()!=0)){
                 System.out.println("Pikinims caidos en combate: "+getAtaque()+" magenta");
                 if(magenta.getCantidad()-getAtaque() <0){
                     magenta.setCantidad(0);
@@ -181,7 +182,7 @@ public class Enemigo extends Zona implements ILevantar{
                     break;
                 }
             }
-            else if ((piknimAfectado == 3)&&((amarillo.getCantidad()-getAtaque())<=0)){
+            else if ((piknimAfectado == 3)&&(amarillo.getCantidad()!=0)){
                 System.out.println("Pikinims caidos en combate: "+getAtaque()+" amarillo");
                 if(amarillo.getCantidad()-getAtaque() <0){
                     amarillo.setCantidad(0);
@@ -192,7 +193,7 @@ public class Enemigo extends Zona implements ILevantar{
                     break;
                 }
             }
-            else if (((cyan.getCantidad()-getAtaque())<=0)&&((magenta.getCantidad()-getAtaque())<=0)&&((amarillo.getCantidad()-getAtaque())<=0)){
+            else if ((cyan.getCantidad()<=0)&&(magenta.getCantidad()<=0)&&(amarillo.getCantidad()<=0)){
                 break;
             }
         }
@@ -245,8 +246,5 @@ public class Enemigo extends Zona implements ILevantar{
                 amarillo.multiplicar(getPeso());
             }
         }
-        // else{
-        //     System.out.println("No pudiste levantar \n");
-        // } no se si queda 
     }
 }
